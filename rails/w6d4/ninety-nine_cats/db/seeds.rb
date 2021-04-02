@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
 kittehs = Cat.create([
   {
     name: 'Satan',
@@ -19,14 +20,14 @@ kittehs = Cat.create([
     name: 'Beelzebub',
     sex: 'M',
     color: 'gray/blue',
-    birth_date: '10/31/2016',
+    birth_date: '31/10/2016',
     description: 'Lord of the Flies'
   },
   {
     name: 'Bathory',
     sex: 'F',
     color: 'white',
-    birth_date: '3/31/2019',
+    birth_date: '31/3/2019',
     description: 'Queen of Blood'
   },
   {
