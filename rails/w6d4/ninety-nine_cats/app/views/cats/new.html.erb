@@ -1,0 +1,23 @@
+<h1>Registuh a Kitteh</h1>
+<form id="new-cat-form" action="/cats" method="post">
+  <p><label for="name">Kitteh Name:</label>
+  <input id="name" type="text" name="kitteh-name" />
+  <p><label for="birthday">Kitteh Borthday:</label>
+  <input id="birthday" type="date" name="kitteh-bday"/>
+  <p><input id="sex-f" type="radio" name="kitteh-sex" value="F" checked="true"/>
+  <label for="sex-f">Female</label>
+  <input id="sex-m" type="radio" name="kitteh-sex" value="M"/>
+  <label for="sex-m">Male</label>
+  <p><label for="color">Kitteh Color:</label>
+  <select id="color" name="kitteh-color">
+    <option value="">--Choose nearest color--</option>
+    <% Cat::VALID_COLORS.each do |color| %>
+      <option value="<%= color %>"><%= color %></option>
+    <% end %>
+  </select>
+  <p><label for="description">Describe Kitteh:</label>
+  <p><textarea id="description" name="kitteh-description" rows="9" cols="27">
+    Mah kitteh iz best kitteh
+  </textarea>
+  <p><input type="submit" value="Submit Kitteh">
+</form>

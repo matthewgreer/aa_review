@@ -1,7 +1,7 @@
 class CatsController < ApplicationController
+
   def index
     @kittehs = Cat.all
-    @index_errors = cat.errors.full_messages
     render :index
   end
 
@@ -10,7 +10,6 @@ class CatsController < ApplicationController
     if @kitteh
       render :show
     else
-      @show_errors = cat.errors.full_messages
       redirect_to cats_url
     end
   end
@@ -18,7 +17,10 @@ class CatsController < ApplicationController
   def create
     @new_kitteh = Cat.new(cat_params)
     if @new_kitteh
-      render
+      render :show
+    else
+      redirect_to :new
+    end
   end
 
   private

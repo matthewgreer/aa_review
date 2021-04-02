@@ -2,7 +2,7 @@
 <ul>
   <% @kittehs.each do |kitteh| %>
     <li>
-      <a href="cats/<%= kitteh.id %>"><%= kitteh.name %></a>
+      <%= link_to kitteh.name, kitteh %></a>
     </li>
   <% end %>
 </ul>
