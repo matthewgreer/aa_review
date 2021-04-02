@@ -16,11 +16,10 @@ require 'action_view'
 
 
 class Cat < ApplicationRecord
+  include ActionView::Helpers::DateHelper
   
   VALID_COLORS = ['black', 'brown', 'calico', 'gray/blue', 'tabby', 'tortoiseshell', 'tuxedo', 'white'].freeze
-  
-  extend ActionView::Helpers::DateHelper
-  
+    
   validates :birth_date, presence: true
   validates :color, presence: true, inclusion: VALID_COLORS
   validates :name, presence: true, uniqueness: true
@@ -32,7 +31,7 @@ class Cat < ApplicationRecord
   
 
   def age
-    time_ago_in_words(:birth_date)
+    time_ago_in_words(birth_date)
   end
 
 end
