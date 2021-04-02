@@ -7,25 +7,21 @@ class CatsController < ApplicationController
 
   def show
     @kitteh = Cat.find(params[:id])
-    if @kitteh
-      render :show
-    else
-      redirect_to cats_url
-    end
+    render :show
   end
 
   def create
     @new_kitteh = Cat.new(cat_params)
-    if @new_kitteh
-      render :show
+    if @new_kitteh.save
+      redirect_to cats_url(@new_kitteh)
     else
-      redirect_to :new
+      render :new
     end
   end
 
   private
 
   def cat_params
-    params.require(:cat).permit(:id, :birth_date, :name, :color, :sex, :description)
+    params.require(:cat).permit(:age, :birth_date, :name, :color, :sex, :description)
   end
 end

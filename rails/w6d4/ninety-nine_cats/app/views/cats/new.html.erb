@@ -1,22 +1,22 @@
 <h1>Registuh a Kitteh</h1>
 <form id="new-cat-form" action="/cats" method="post">
-  <p><label for="name">Kitteh Name:</label>
-  <input id="name" type="text" name="kitteh-name" />
-  <p><label for="birthday">Kitteh Borthday:</label>
-  <input id="birthday" type="date" name="kitteh-bday"/>
-  <p><input id="sex-f" type="radio" name="kitteh-sex" value="F" checked="true"/>
-  <label for="sex-f">Female</label>
-  <input id="sex-m" type="radio" name="kitteh-sex" value="M"/>
-  <label for="sex-m">Male</label>
-  <p><label for="color">Kitteh Color:</label>
-  <select id="color" name="kitteh-color">
+  <p><label for="kitteh-name">Kitteh Name:</label>
+  <input id="kitteh-name" type="text" name="cat[name]" />
+  <p><label for="kitteh-birthday">Kitteh Borthday:</label>
+  <input id="kitteh-birthday" type="date" name="cat[birth_date]"/>
+  <p><input id="kitteh-sex-f" type="radio" name="cat[sex]" value="F" checked="true"/>
+  <label for="kitteh-sex-f">Female</label>
+  <input id="kitteh-sex-m" type="radio" name="cat[sex]" value="M"/>
+  <label for="kitteh-sex-m">Male</label>
+  <p><label for="kitteh-color">Kitteh Color:</label>
+  <select id="kitteh-color" name="cat[color]">
     <option value="">--Choose nearest color--</option>
     <% Cat::VALID_COLORS.each do |color| %>
       <option value="<%= color %>"><%= color %></option>
     <% end %>
   </select>
-  <p><label for="description">Describe Kitteh:</label>
-  <p><textarea id="description" name="kitteh-description" rows="9" cols="27">
+  <p><label for="kitteh-description">Describe Kitteh:</label>
+  <p><textarea id="kitteh-description" name="cat[description]" rows="9" cols="27">
     Mah kitteh iz best kitteh
   </textarea>
   <p><input type="submit" value="Submit Kitteh">
