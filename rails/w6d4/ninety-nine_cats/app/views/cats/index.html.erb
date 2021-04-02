@@ -1,0 +1,8 @@
+<h1>KITTEHS</h1>
+<ul>
+  <% @kittehs.each do |kitteh| %>
+    <li>
+      <a href="cats/<%= kitteh.id %>"><%= kitteh.name %></a>
+    </li>
+  <% end %>
+</ul>
