@@ -5,3 +5,35 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+kittehs = Cat.create([
+  {
+    name: 'Satan',
+    sex: 'M',
+    color: 'black',
+    birth_date: '6/6/2006',
+    description: 'Prince of Darkness'
+  },
+  {
+    name: 'Beelzebub',
+    sex: 'M',
+    color: 'gray/blue',
+    birth_date: '10/31/2016',
+    description: 'Lord of the Flies'
+  },
+  {
+    name: 'Bathory',
+    sex: 'F',
+    color: 'white',
+    birth_date: '3/31/2019',
+    description: 'Queen of Blood'
+  },
+  {
+    name: 'Bob',
+    sex: 'F',
+    color: 'tabby',
+    birth_date: '1/1/2021',
+    description: 'Hi. I am Bob.'
+  },
+])
