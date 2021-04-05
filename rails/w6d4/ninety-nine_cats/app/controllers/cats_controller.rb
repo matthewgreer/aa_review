@@ -10,6 +10,11 @@ class CatsController < ApplicationController
     render :show
   end
 
+  def new
+    @kitteh = Cat.new
+    render :new
+  end
+
   def create
     @new_kitteh = Cat.new(cat_params)
     if @new_kitteh.save
@@ -17,6 +22,21 @@ class CatsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @kitteh = Cat.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @kitteh = Cat.find(params[:id])
+    if @kitteh.update(cat_params)
+      redirect_to cat_url(@kitteh)
+    else
+      render :edit
+    end
+
   end
 
   private
