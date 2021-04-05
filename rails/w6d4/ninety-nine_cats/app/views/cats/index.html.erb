@@ -2,7 +2,10 @@
 <ul>
   <% @kittehs.each do |kitteh| %>
     <li>
-      <%= link_to kitteh.name, kitteh %></a>
+      <%= link_to kitteh.name, kitteh %>
     </li>
   <% end %>
+    <p>
+      <%= link_to 'Add kitteh', new_cat_url %>
+    </p>
 </ul>
