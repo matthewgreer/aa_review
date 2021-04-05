@@ -23,9 +23,15 @@
     <td><%= @kitteh.sex %>
   </tr>
   <tr>
+    <td>Color:</td>
+    <td><%= @kitteh.color %>
+  </tr>
+  <tr>
     <td>Description:</td>
     <td><%= @kitteh.description %>
   </tr>
 </table>
+
+<p><%= link_to "Edit #{@kitteh.name}", edit_cat_url(@kitteh) %>
 
 <p><%= link_to "Back to all Kittehz", cats_url %>
