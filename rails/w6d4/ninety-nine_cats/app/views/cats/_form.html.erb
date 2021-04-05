@@ -1,0 +1,31 @@
+<form id="cat-form" action="<%= kitteh.persisted? ? cat_url(kitteh) : cats_url %>" method="POST">
+  <% if kitteh.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+  <p><label for="kitteh-name">Kitteh Name:</label>
+  <input id="kitteh-name" type="text" name="cat[name]" value="<%= kitteh.name %>" />
+  <p><label for="kitteh-birthday">Kitteh Borthday:</label>
+  <input id="kitteh-birthday" type="date" name="cat[birth_date]" value="<%= kitteh.birth_date %>"/>
+  <p><input id="kitteh-sex-f" type="radio" name="cat[sex]" value="F" <%= kitteh.sex == "F" ? "checked='true'" : "" %>"/>
+  <label for="kitteh-sex-f">Female</label>
+  <input id="kitteh-sex-m" type="radio" name="cat[sex]" value="M" <%= kitteh.sex == "M" ? "checked='true'" : "" %>/>
+  <label for="kitteh-sex-m">Male</label>
+  <p><label for="kitteh-color">Kitteh Color:</label>
+  <select id="kitteh-color" name="cat[color]" selected="<%= kitteh.color %>">
+    <option value="">--Choose nearest color--</option>
+    <% Cat::VALID_COLORS.each do |color| %>
+      <option value="<%= color %>" <%= kitteh.color == color ? "selected='true'" : "" %>"><%= color %></option>
+    <% end %>
+  </select>
+  <p><label for="kitteh-description">Describe Kitteh:</label>
+  <p><textarea id="kitteh-description" name="cat[description]" rows="9" cols="27">
+    <%= kitteh.description || "Mah kitteh iz best kitteh"%>
+  </textarea>
+  <% if kitteh.persisted? %>
+  <p><input type="submit" value="Save changes">
+  <p><%= link_to "No change. #{kitteh.name}'s purrfect.", cat_url(kitteh) %>
+  <% else %>
+    <p><input type="submit" value="Register kitteh">
+    <p><%= link_to "Back to all kittehz", cats_url %>
+  <% end %>
+</form>
