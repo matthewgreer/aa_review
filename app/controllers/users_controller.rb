@@ -1,5 +1,15 @@
 class UsersController < ApplicationController
   
+  def show
+    @user = User.find(params[:id])
+    if @user
+      render :show
+    else
+      flash(@user.errors.full_messages)
+      redirect_to new_user_url
+    end
+  end
+  
   def new
     render :new
   end
@@ -8,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save!
       login!(@user)
-      redirect_to :root
+      redirect_to :show
     else
       flash.now(@user.errors.full_messages)
       render :new
