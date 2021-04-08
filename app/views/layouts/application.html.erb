@@ -10,6 +10,21 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <p>Logged in as: <%= current_user.email %></p>
+      <p><form action="/session" method="POST">
+        <input
+          type="hidden" 
+          name="authenticity_token" 
+          value="<%= form_authenticity_token %>"
+        >
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="LOG OUT">
+      </form></p>
+    <% else %>
+      <p><%= link_to 'LOGIN', new_session_url %> or 
+      <%= link_to 'CREATE AN ACCOUNT', new_user_url %></p>
+    <% end %> 
     <%= yield %>
   </body>
 </html>
