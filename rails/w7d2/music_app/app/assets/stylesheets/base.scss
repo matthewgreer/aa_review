@@ -1,0 +1,41 @@
+
+body {
+  background-color: lightblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1, h2, p, a, input {
+  font-family: 'Press Start 2P', cursive;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 18px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 27px;
+  margin: 9px;
+  text-transform: uppercase;
+}
+
+p, a, input {
+  font-size: 18px;
+}
+
+a {
+  background-color: blue;
+  color: cyan;
+  border-radius: 10px;
+  padding: 18px;
+  margin: 9px;
+  width: 200px;
+  text-align: center;
+}
+
+
+

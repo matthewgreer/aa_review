@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stupid Music App that doesn't work</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <h1>Stupid Broken-Ass Music App</h1>
+    <% if logged_in? %>
+      <p>Logged in as: <%= current_user.email %></p>
+      <p><form action=<%= session_url %> method="POST">
+        <input
+          type="hidden" 
+          name="authenticity_token" 
+          value="<%= form_authenticity_token %>"
+        >
+        <input 
+          type="hidden" 
+          name="_method" 
+          value="DELETE"
+        >
+        <input 
+          type="submit" 
+          value="LOG OUT"
+        >
+      </form></p>
+    <% end %>
+
+    <% if flash[:errors] %>
+      <p><%= flash[:errors].join(',') %></p>
+    <% end %>
+
+    <%= yield %>
+  
+  </body>
+</html>
