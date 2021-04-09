@@ -1,0 +1,28 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
+  p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  label, input {
+    display: block;
+  }
+
+  label {
+    background-color: cyan;
+    padding: 10px;
+    color:lightblue;
+    width: 150px;
+  }
+
+  input[type="submit"] {
+    padding: 9px;
+    align-self: flex-end;
+  }
+
+}
