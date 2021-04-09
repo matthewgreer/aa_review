@@ -1,0 +1,22 @@
+<h2>Log In Page</h2>
+
+<%= link_to 'Create an account', new_user_url %>
+
+<form action="<%= session_url %>" method="POST">
+  <input 
+    type="hidden" 
+    name="authenticity_token" 
+    value=<%= form_authenticity_token %>
+  >
+  <p>
+    <label for="new-user-email">Email</label>
+    <input type="text" name="user[email]" id="new-user-email" >
+  </p>
+  <p>
+    <label for="new-user-password">Password</label>
+    <input type="password" name="user[password]" id= "new-user-password">
+  </p>
+  <p>
+    <input type="submit" value="Submit">
+  </p>
+</form>
