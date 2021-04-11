@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
-  def :show
+  def show
+    render :show
   end
 
-  def :new
+  def new
+    render :new
   end
 
-  def :create
+  def create
   end
 end
