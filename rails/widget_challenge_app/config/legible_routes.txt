@@ -1,4 +1,5 @@
                    Prefix Verb URI Pattern                                                                              Controller#Action
+                     root GET  /                                                                                        redirect(301, /orders/new)
                    orders POST /orders(.:format)                                                                        orders#create
                 new_order GET  /orders/new(.:format)                                                                    orders#new
                     order GET  /orders/:id(.:format)                                                                    orders#show
