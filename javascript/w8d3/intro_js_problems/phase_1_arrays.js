@@ -24,13 +24,13 @@ Array.prototype.twoSum = function() {
   return sumToZero;
 };
 
-// const arr4 = [];
-// const arr5 = [1, 2, 3, 4, -1, -3, 0];
-// const arr6 = [1, 0, 4, -1, -3, 2, -2, 8];
+const arr4 = [];
+const arr5 = [1, 2, 3, 4, -1, -3, 0];
+const arr6 = [1, 0, 4, -1, -3, 2, -2, 8];
 
-// console.log(arr4.twoSum())
-// console.log(arr5.twoSum())
-// console.log(arr6.twoSum())
+console.log(arr4.twoSum())
+console.log(arr5.twoSum())
+console.log(arr6.twoSum())
 
 
 Array.prototype.transpose = function() {

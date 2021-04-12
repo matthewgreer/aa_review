@@ -8,23 +8,23 @@ Array.prototype.myEach = function(callback) {
 
 };
 
-// const arr1 = [1, 5, 10, 20, 100];
-// const arr2 = ['cat', 'bird', 'hippo'];
-// const cb1 = function(num) {
-//   return num + 5;
-// };
-// const cb2 = function(str) {
-//   return (`the ${str} ate my nuts`);
-// };
-// const cb3 = function(acc, num) {
-//   return acc * num;
-// };
-// const cb4 = function(acc, num) {
-//   return acc + num;
-// };
+const arr1 = [1, 5, 10, 20, 100];
+const arr2 = ['cat', 'bird', 'hippo'];
+const cb1 = function(num) {
+  return num + 5;
+};
+const cb2 = function(str) {
+  return (`the ${str} ate my nuts`);
+};
+const cb3 = function(acc, num) {
+  return acc * num;
+};
+const cb4 = function(acc, num) {
+  return acc + num;
+};
 
-// console.log(arr1.myEach(cb1));
-// console.log(arr2.myEach(cb2));
+console.log(arr1.myEach(cb1));
+console.log(arr2.myEach(cb2));
 
 Array.prototype.myMap = function(callback) {
   
@@ -38,8 +38,8 @@ Array.prototype.myMap = function(callback) {
 
 };
 
-// console.log(arr1.myMap(cb1));
-// console.log(arr2.myMap(cb2));
+console.log(arr1.myMap(cb1));
+console.log(arr2.myMap(cb2));
 
 Array.prototype.myReduce = function(callback, initialValue) {
   
@@ -54,7 +54,7 @@ Array.prototype.myReduce = function(callback, initialValue) {
 
 }
 
-// console.log(arr1.myReduce(cb4));
-// console.log(arr1.myReduce(cb4, 12));
-// console.log(arr1.myReduce(cb3));
-// console.log(arr1.myReduce(cb3, 4));
+console.log(arr1.myReduce(cb4));
+console.log(arr1.myReduce(cb4, 12));
+console.log(arr1.myReduce(cb3));
+console.log(arr1.myReduce(cb3, 4));
