@@ -39,5 +39,9 @@
     value="<%= @min_date %>"
   >
 
+  <% if flash[:errors] %>
+    <p class="errors"><%= flash[:errors].join(", ") %></p>
+  <% end %>
+
   <p><input class="submit" type="submit" value="Submit Widget Order">
 </form>
