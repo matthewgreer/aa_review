@@ -1,2 +1,43 @@
-<h1>Orders#:new,</h1>
-<p>Find me in app/views/orders/:new,.html.erb</p>
+<h2>Order Form</h2>
+<form class="new-order-form" action="<%= orders_url %>" method="POST">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>"
+  >
+  
+  <p><label for="order-type">Which Widget will you want?</label>
+  <select name="order[order_type]" id="order-type">
+    <option value="Widget" selected>Widget</option>
+    <option value="Widget Pro">Widget Pro</option>
+    <option value="Widget Xtreme">Widget Xtreme</option>
+  </select>
+
+  <p><label for="order-color">Widget Color</label>
+  <select name="order[color]" id="order-color">
+    <option value="">-- choose your color</option>
+    <option value="red">red</option>
+    <option value="yellow">yellow</option>
+    <option value="blue">blue</option>
+  </select>
+
+  <p><label for="order-quantity">Quantity</label>
+  <input 
+    type="number" 
+    min="1"
+    value="1"
+    name="order[quantity]" 
+    id="order-quantity"
+  >
+
+  <p><label for="order-date-needed">Delivery Date (allow 7 days minimum)</label>
+  <input 
+    type="date" 
+    name="order[date_needed]" 
+    id="order-date-needed"
+    min="<%= @min_date %>"
+    value="<%= @min_date %>"
+  >
+
+  <p><input class="submit" type="submit" value="Submit Widget Order">
+</form>

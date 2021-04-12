@@ -1,2 +1,7 @@
-<h1>Orders#:show,</h1>
-<p>Find me in app/views/orders/:show,.html.erb</p>
+<h2 class="success">Order Successful!</h2>
+<h3 class="order-number">Order #: <%= @order.identifier %></h3>
+<p>Congratulations! On <span class="important-info"><%= @order.date_needed %>
+  </span>, you will be the proud owner of <span class="important-info">
+  <%= @order.quantity %></span> of the finest <span class="important-info">
+  <%= @order.color %> <%= @order.order_type %>s</span>!
+</p>
