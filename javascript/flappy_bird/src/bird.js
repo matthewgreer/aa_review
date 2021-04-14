@@ -1,6 +1,6 @@
 
 const CONSTANTS = {
-  GRAVITY: 0.8,
+  GRAVITY: 0.6,
   FLAP_LIFT: -8,
   TERMINAL_VEL: 12,
   BIRD_WIDTH: 80,
@@ -12,10 +12,11 @@ export default class Bird {
     this.dimensions = dimensions;
     this.xPos = dimensions.width / 3;
     this.yPos = dimensions.height / 2;
-    this.wingPos = 'up';
+    // this.wingPos = 'up';
   }
 
   drawBird(ctx) {
+    ctx.save();
     // body
     ctx.translate(this.xPos, this.yPos);
     ctx.fillStyle='yellow';
@@ -36,10 +37,12 @@ export default class Bird {
       CONSTANTS.BIRD_HEIGHT * .33, 
       CONSTANTS.BIRD_WIDTH * .05,
       0,
-      2* Math.PI
+      2 * Math.PI
     );
     ctx.fill();
     ctx.closePath();
+    this.drawWing(ctx); 
+    ctx.restore();
   }
 
   drawWing(ctx){
@@ -59,7 +62,7 @@ export default class Bird {
       ctx.lineTo(CONSTANTS.BIRD_WIDTH * -.25, CONSTANTS.BIRD_HEIGHT * .1);
     } else {
       ctx.shadowOffsetY=0;
-      ctx.moveTo(CONSTANTS.BIRD_WIDTH * -.13, 35);
+      ctx.moveTo(CONSTANTS.BIRD_WIDTH * -0.13, CONSTANTS.BIRD_HEIGHT * 1.17);
       ctx.lineTo(0, CONSTANTS.BIRD_HEIGHT * 1.27);
       ctx.lineTo(CONSTANTS.BIRD_WIDTH * .5, CONSTANTS.BIRD_HEIGHT * .67);
       ctx.lineTo(CONSTANTS.BIRD_WIDTH * -0.05, CONSTANTS.BIRD_HEIGHT * 0.67);
@@ -73,18 +76,17 @@ export default class Bird {
   animate(ctx) {
     this.move();
     this.drawBird(ctx);
-    this.drawWing(ctx); 
   }
 
   move() {
     this.yPos += this.velocity;
-    this.velocity += CONSTANTS.GRAVITY // gravity constant
+    this.velocity += CONSTANTS.GRAVITY
   }
 
   flap() {
-    this.velocity += CONSTANTS.FLAP_LIFT // lift constant
     this.wingDown();
-    setTimeout(this.wingUp(), 500);
+    setTimeout(this.wingUp.bind(this), 100);
+    return this.velocity += CONSTANTS.FLAP_LIFT
   }
 
   wingDown() {
