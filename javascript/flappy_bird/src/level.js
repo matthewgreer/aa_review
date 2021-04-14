@@ -1,8 +1,9 @@
 const LEVEL_CONSTANTS = {
-  X_SPACING: 220,
-  GAP: 150,
-  PIPE_WIDTH: 30,
-  PIPE_VELOCITY: 5
+  X_SPACING: 400,
+  GAP: 180,
+  MAX_GAP_DIFF: 200,
+  PIPE_WIDTH: 60,
+  PIPE_VELOCITY: 3
 };
 
 export default class Level {
@@ -17,13 +18,26 @@ export default class Level {
   }
 
   randomGapTop() {
-    return Math.floor(Math.random() * (
+    const gapTop = Math.floor(Math.random() * (
       this.dimensions.height - LEVEL_CONSTANTS.GAP
     ));
+    if (this.pipes.length) {
+      // limit difference in consecutive gap height
+      const lastGapTop = this.pipes[this.pipes.length - 1][1];
+      if (Math.abs(gapTop - lastGapTop) < LEVEL_CONSTANTS.MAX_GAP_DIFF) {
+        return gapTop
+      } else {
+        // if not within 200px, pick another height
+        return this.randomGapTop()
+      } 
+    } else {
+      // if no pipes in array, 
+      return gapTop;
+    }
   }
 
   spawnPipe() {
-    const pipeXPos = LEVEL_CONSTANTS.X_SPACING + (
+    const pipeXPos = LEVEL_CONSTANTS.X_SPACING + LEVEL_CONSTANTS.PIPE_WIDTH + (
       this.pipes.length ?
       this.pipes[this.pipes.length - 1][0] :
       this.dimensions.width
