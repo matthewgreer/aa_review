@@ -1,3 +1,11 @@
+
+const CONSTANTS = {
+  GRAVITY: 0.8,
+  FLAP_LIFT: -8,
+  TERMINAL_VEL: 12,
+  BIRD_WIDTH: 80,
+  BIRD_HEIGHT: 60
+}
 export default class Bird {
   constructor(dimensions) {
     this.velocity = 0;
@@ -8,32 +16,54 @@ export default class Bird {
   }
 
   drawBird(ctx) {
+    // body
     ctx.translate(this.xPos, this.yPos);
     ctx.fillStyle='yellow';
-    ctx.fillRect(0, 0, 40, 30);
+    ctx.fillRect(0, 0, CONSTANTS.BIRD_WIDTH, CONSTANTS.BIRD_HEIGHT);
+    // beak
     ctx.fillStyle='orange';
-    ctx.fillRect(40, 15, 15, 10);
+    ctx.beginPath()
+    ctx.moveTo(CONSTANTS.BIRD_WIDTH, CONSTANTS.BIRD_HEIGHT * .4);
+    ctx.lineTo(CONSTANTS.BIRD_WIDTH * 1.375, CONSTANTS.BIRD_HEIGHT * .67);
+    ctx.lineTo(CONSTANTS.BIRD_WIDTH, CONSTANTS.BIRD_HEIGHT * .83);
+    ctx.closePath();
+    ctx.fill();
+    // eye
     ctx.fillStyle='black';
-    ctx.fillRect(30, 10, 5, 5)
+    ctx.beginPath();
+    ctx.arc(
+      CONSTANTS.BIRD_WIDTH * .75, 
+      CONSTANTS.BIRD_HEIGHT * .33, 
+      CONSTANTS.BIRD_WIDTH * .05,
+      0,
+      2* Math.PI
+    );
+    ctx.fill();
+    ctx.closePath();
   }
 
   drawWing(ctx){
     ctx.fillStyle='gold';
     ctx.strokeStyle='goldenrod';
+    ctx.shadowColor='gray';
+    ctx.shadowBlur=3;
+    ctx.shadowOffsetX=3;
+    ctx.shadowOffsetY=3;    
     ctx.lineWidth='1';
     ctx.beginPath();
     if (this.wingPos === 'up') {
-      ctx.moveTo(-10, 3);
-      ctx.lineTo(0, 5);
-      ctx.lineTo(20, 20);
-      ctx.lineTo(-5, 18);
-      ctx.lineTo(-10, 3);
+      ctx.moveTo(CONSTANTS.BIRD_WIDTH * -.25, CONSTANTS.BIRD_HEIGHT * .1);
+      ctx.lineTo(0, CONSTANTS.BIRD_HEIGHT * .17);
+      ctx.lineTo(CONSTANTS.BIRD_WIDTH * .5, CONSTANTS.BIRD_HEIGHT * .67);
+      ctx.lineTo(CONSTANTS.BIRD_WIDTH * -.13, CONSTANTS.BIRD_HEIGHT * .6);
+      ctx.lineTo(CONSTANTS.BIRD_WIDTH * -.25, CONSTANTS.BIRD_HEIGHT * .1);
     } else {
-      ctx.moveTo(-10, 35);
-      ctx.lineTo(0, 32);
-      ctx.lineTo(20, 20);
-      ctx.lineTo(-5, 20);
-      ctx.lineTo(-10, 35);
+      ctx.shadowOffsetY=0;
+      ctx.moveTo(CONSTANTS.BIRD_WIDTH * -.13, 35);
+      ctx.lineTo(0, CONSTANTS.BIRD_HEIGHT * 1.27);
+      ctx.lineTo(CONSTANTS.BIRD_WIDTH * .5, CONSTANTS.BIRD_HEIGHT * .67);
+      ctx.lineTo(CONSTANTS.BIRD_WIDTH * -0.05, CONSTANTS.BIRD_HEIGHT * 0.67);
+      ctx.lineTo(CONSTANTS.BIRD_WIDTH * -.13, CONSTANTS.BIRD_HEIGHT * 1.17);
     }
     ctx.stroke();
     ctx.fill();
@@ -41,17 +71,18 @@ export default class Bird {
   }
 
   animate(ctx) {
+    this.move();
     this.drawBird(ctx);
     this.drawWing(ctx); 
   }
 
   move() {
     this.yPos += this.velocity;
-    this.velocity += 0.5; // gravity constant
+    this.velocity += CONSTANTS.GRAVITY // gravity constant
   }
 
   flap() {
-    this.velocity -= 8 // lift constant
+    this.velocity += CONSTANTS.FLAP_LIFT // lift constant
     this.wingDown();
     setTimeout(this.wingUp(), 500);
   }
