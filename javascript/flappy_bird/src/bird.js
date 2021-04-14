@@ -1,10 +1,10 @@
 
 const CONSTANTS = {
-  GRAVITY: 0.6,
+  GRAVITY: 0.4,
   FLAP_LIFT: -8,
   TERMINAL_VEL: 12,
-  BIRD_WIDTH: 80,
-  BIRD_HEIGHT: 60
+  BIRD_WIDTH: 40,
+  BIRD_HEIGHT: 30
 }
 export default class Bird {
   constructor(dimensions) {
@@ -79,6 +79,7 @@ export default class Bird {
   }
 
   move() {
+    if (this.velocity > 12) this.velocity = 12;
     this.yPos += this.velocity;
     this.velocity += CONSTANTS.GRAVITY
   }
