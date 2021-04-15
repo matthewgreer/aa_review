@@ -12,7 +12,7 @@ export default class Bird {
     this.dimensions = dimensions;
     this.xPos = dimensions.width / 3;
     this.yPos = dimensions.height / 2;
-    // this.wingPos = 'up';
+    this.wingPos = 'up';
   }
 
   drawBird(ctx) {
@@ -41,6 +41,7 @@ export default class Bird {
     );
     ctx.fill();
     ctx.closePath();
+    // wing
     this.drawWing(ctx); 
     ctx.restore();
   }
@@ -79,7 +80,9 @@ export default class Bird {
   }
 
   move() {
-    if (this.velocity > 12) this.velocity = 12;
+    if (this.velocity >= CONSTANTS.TERMINAL_VEL) {
+      this.velocity = CONSTANTS.TERMINAL_VEL;
+    }
     this.yPos += this.velocity;
     this.velocity += CONSTANTS.GRAVITY
   }
@@ -96,6 +99,16 @@ export default class Bird {
 
   wingUp() {
     return this.wingPos = 'up';
+  }
+
+  bounds() {
+    const bounds = {
+      bTop: this.yPos,
+      bLeft: this.xPos,
+      bBottom: this.yPos + CONSTANTS.BIRD_HEIGHT,
+      bRight: this.xPos + CONSTANTS.BIRD_WIDTH
+    }
+    return bounds;
   }
 
 }

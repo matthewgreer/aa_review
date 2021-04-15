@@ -72,6 +72,27 @@ export default class Level {
     })
   }
 
+  collidesWith(bounds) {
+    // test if bird has gone out of bounds
+    const {bTop, bLeft, bRight, bBottom} = bounds;
+    if (bTop < 0 || bBottom > this.dimensions.height) return true;
+
+    this.pipes.forEach(function(pipe) {
+      const [pLeft, pGapTop] = pipe;
+      const pRight = pLeft + LEVEL_CONSTANTS.PIPE_WIDTH;
+      const pGapBottom = pGapTop + LEVEL_CONSTANTS.GAP;
+
+      if (pLeft <= bRight && pRight >= bLeft) {
+        if (bTop <= pGapTop || bBottom >= pGapBottom) {
+          return true;
+        }
+      }
+    });
+    return false;
+  }
+
+
+
   animate(ctx) {
     this.drawBackground(ctx);
     this.movePipes();

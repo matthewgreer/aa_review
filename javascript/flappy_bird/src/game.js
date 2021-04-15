@@ -23,14 +23,32 @@ export default class Game {
   }
 
   animate()  {
-    this.level.animate(this.ctx);
-    this.bird.animate(this.ctx);
-    const self = this;
-    requestAnimationFrame(function() {
-      if (self.running === true) {
-        return self.animate();
-      }
-    })
+    console.log(this.level.collidesWith(this.bird.bounds()));
+    console.log(this.running);
+    if (this.level.collidesWith(this.bird.bounds) === true) {
+      debugger
+      this.running = false;
+      return this.gameOver(this.ctx);
+    } else {
+      debugger
+      this.level.animate(this.ctx);
+      this.bird.animate(this.ctx);
+      const self = this;
+      requestAnimationFrame(function() {
+        if (self.running === true) {
+          return self.animate();
+        }
+      });
+    }
+  }
+
+  gameOver(ctx) {
+    debugger
+    ctx.font = '30px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'red';
+    ctx.fillText('GAME OVER', this.dimensions.width / 2, this.dimensions.height / 4);
+    return this.restart();
   }
 
   click() {
