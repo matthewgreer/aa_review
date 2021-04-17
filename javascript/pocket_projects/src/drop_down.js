@@ -9,7 +9,7 @@ const dogs = {
   "French Bulldog": "https://www.akc.org/dog-breeds/french-bulldog/" 
 };
 
-const dogLinkCreator = (dogs) => {
+const dogLinkCreator = () => {
   const dogArray = [];
   for (const [breed, link] of Object.entries(dogs)) {
     const anchor = document.createElement('a');
@@ -23,11 +23,28 @@ const dogLinkCreator = (dogs) => {
   return dogArray;
 }
 
-const attachDogLinks = (arrayODogs) => {
+const attachDogLinks = () => {
   const dropDownDogs = document.querySelector('.drop-down-dog-list');
+  const arrayODogs = dogLinkCreator(dogs);
   arrayODogs.forEach(dogLI => {
     dropDownDogs.appendChild(dogLI);
   })
 }
 
-attachDogLinks(dogLinkCreator(dogs));
+attachDogLinks();
+
+const handleEnter = () => {
+  const dogLinks = document.querySelectorAll(".dog-link");
+  dogLinks.forEach(link => link.classList.add('visible'));
+}
+
+const handleLeave = () => {
+  const dogLinks = document.querySelectorAll(".dog-link");
+  dogLinks.forEach(link => link.classList.remove('visible'));
+}
+
+const nav = document.querySelector(".drop-down-dog-nav");
+
+nav.addEventListener('mouseenter', handleEnter);
+nav.addEventListener('mouseleave', handleLeave);
+
