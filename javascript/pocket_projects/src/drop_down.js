@@ -21,30 +21,30 @@ const dogLinkCreator = () => {
     dogArray.push(listItem);
   }
   return dogArray;
-}
+};
 
 const attachDogLinks = () => {
   const dropDownDogs = document.querySelector('.drop-down-dog-list');
   const arrayODogs = dogLinkCreator(dogs);
-  arrayODogs.forEach(dogLI => {
-    dropDownDogs.appendChild(dogLI);
-  })
-}
-
-attachDogLinks();
+  arrayODogs.forEach( dogLI => dropDownDogs.appendChild(dogLI) )
+};
 
 const handleEnter = () => {
   const dogLinks = document.querySelectorAll(".dog-link");
-  dogLinks.forEach(link => link.classList.add('visible'));
-}
+  dogLinks.forEach(link => link.classList.add("visible"));
+};
 
 const handleLeave = () => {
   const dogLinks = document.querySelectorAll(".dog-link");
-  dogLinks.forEach(link => link.classList.remove('visible'));
-}
+  dogLinks.forEach(link => link.classList.remove("visible"));
+};
 
-const nav = document.querySelector(".drop-down-dog-nav");
 
+attachDogLinks();
+
+// why do these fucking event listeners not get added?
+
+const nav = document.querySelector("nav.drop-down-dog-nav");
 nav.addEventListener('mouseenter', handleEnter);
 nav.addEventListener('mouseleave', handleLeave);
 
