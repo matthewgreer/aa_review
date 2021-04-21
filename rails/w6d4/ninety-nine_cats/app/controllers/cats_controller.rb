@@ -18,7 +18,7 @@ class CatsController < ApplicationController
   def create
     @new_kitteh = Cat.new(cat_params)
     if @new_kitteh.save
-      redirect_to cats_url(@new_kitteh)
+      redirect_to cats_url
     else
       render :new
     end
