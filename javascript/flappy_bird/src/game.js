@@ -23,20 +23,17 @@ export default class Game {
   }
 
   animate()  {
-    console.log(this.level.collidesWith(this.bird.bounds()));
-    console.log(this.running);
-    if (this.level.collidesWith(this.bird.bounds) === true) {
-      debugger
+    console.log(`Collision?: ${this.level.collidesWith(this.bird.bounds())}`);
+    console.log(`Running: ${this.running}`);
+    if (this.level.collidesWith(this.bird.bounds()) === true) {
       this.running = false;
-      return this.gameOver(this.ctx);
     } else {
-      debugger
       this.level.animate(this.ctx);
       this.bird.animate(this.ctx);
       const self = this;
       requestAnimationFrame(function() {
         if (self.running === true) {
-          return self.animate();
+          self.animate();
         }
       });
     }
