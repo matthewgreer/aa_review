@@ -9,6 +9,23 @@
   </head>
 
   <body>
+    <nav>
+      <h1><a href="<%= cats_url %>">Nyndeenyn Kittehz</a></h1>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>" class="login button">Yoozer Loggin</a>
+          <a href="<%= new_user_url %>" class="signup button">Noo Yoozer</a>
+        <% else %>
+          <form action="<%= session_url %>" method="POST">
+            <input 
+              type="hidden" 
+              name="authentication_token" 
+              value="<%= form_authenticity_token %>"
+            >
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Skat (Loggowt)" class="logout button">
+          </form>
+        <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>
