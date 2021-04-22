@@ -1,0 +1,21 @@
+<form action="<%= cats_url %>" method="post">
+  <p>
+    <label for="user_at_user_name">Yoozer Naem</label><br>
+    <input
+      type="text"
+      name="user[user_name]"
+      id="user_at_user_name"
+      value="<%= user.user_name %>">
+  </p>
+  <p>
+    <label for="user_at_user_password">Paws-Word</label><br>
+    <input
+      type="password"
+      name="user[password]"
+      id="user_at_user_password"
+      value="<%= user.password %>">
+  </p>
+
+  
+  <p><input class="button" type="submit" value="Submit, Yoozer!"></p>
+</form>

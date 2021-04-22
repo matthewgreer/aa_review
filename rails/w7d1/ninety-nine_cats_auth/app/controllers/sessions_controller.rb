@@ -3,14 +3,13 @@ class SessionsController < ApplicationController
   before_action :ensure_not_logged_in!, only: [:new, :create]
 
   def new
-    @session = Session.new
     render :new
   end
 
   def create
     @user = User.find_by_credentials(
-      params[:user][user_name],
-      params[:user][user_name]
+      params[:user][:user_name],
+      params[:user][:password]
     )
     if @user.nil?
      flash.now[:errors] = @user.errors.full_messages
@@ -18,6 +17,7 @@ class SessionsController < ApplicationController
     else
       login!(@user)
       redirect_to cats_url
+    end
   end
 
   def destroy

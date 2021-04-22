@@ -8,8 +8,13 @@ class CatRentalRequest < ApplicationRecord
   validate :does_not_overlap_approved_request
 
   belongs_to :cat
+  belongs_to :requester
+    class_name: "User",
+    foreign_key: :user_id
 
   after_initialize :assign_pending_status
+  before_action :ensure_logged_in!, only: :approve, :deny
+
 
   def approve!
     raise 'not pending' unless self.status == 'PENDING'
