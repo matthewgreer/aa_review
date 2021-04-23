@@ -23,9 +23,8 @@ export default class Game {
   }
 
   animate()  {
-    console.log(`Collision?: ${this.level.collidesWith(this.bird.bounds())}`);
-    console.log(`Running: ${this.running}`);
     if (this.level.collidesWith(this.bird.bounds()) === true) {
+      this.gameOver(this.ctx);
       this.running = false;
     } else {
       this.level.animate(this.ctx);
@@ -40,12 +39,10 @@ export default class Game {
   }
 
   gameOver(ctx) {
-    debugger
     ctx.font = '30px Arial';
     ctx.textAlign = 'center';
     ctx.fillStyle = 'red';
     ctx.fillText('GAME OVER', this.dimensions.width / 2, this.dimensions.height / 4);
-    return this.restart();
   }
 
   click() {

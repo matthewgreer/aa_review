@@ -76,19 +76,19 @@ export default class Level {
     // test if bird has gone out of bounds
     const {bTop, bLeft, bRight, bBottom} = bounds;
     if (bTop < 0 || bBottom > this.dimensions.height) return true;
-
-    this.pipes.forEach(function(pipe) {
+    let pipeCollision = false;
+    this.pipes.forEach(function(pipe, index) {
       const [pLeft, pGapTop] = pipe;
+      
       const pRight = pLeft + LEVEL_CONSTANTS.PIPE_WIDTH;
       const pGapBottom = pGapTop + LEVEL_CONSTANTS.GAP;
-
       if (pLeft <= bRight && pRight >= bLeft) {
         if (bTop <= pGapTop || bBottom >= pGapBottom) {
-          return true;
+          pipeCollision = true;
         }
       }
     });
-    return false;
+    return pipeCollision;
   }
 
 
